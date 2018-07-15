@@ -12,7 +12,8 @@ class App extends Component {
 
     ],
 
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false,
   }
 
   switchNameHandler = (newName) => {
@@ -36,6 +37,12 @@ class App extends Component {
     )
   }
 
+  // Toggles the form
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow});
+  }
+
   
 
   
@@ -57,24 +64,31 @@ class App extends Component {
         <p>This is really working!</p>
         
         <button 
-        onClick={() => this.switchNameHandler('Hello')}
+        onClick={this.togglePersonsHandler}
         style={style}
         >Switch Name</button>
         
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this,'Max!')}
-          changed={this.nameChangedHandler}
-          />
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}
-          />
+        { 
+          // if showPersons is true then render what's below
+          this.state.showPersons === true ?  
+          <div >
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}
+              />
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click={this.switchNameHandler.bind(this,'Max!')}
+              changed={this.nameChangedHandler}
+              />
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age}
+              />
+              {/* else do null */}
+          </div> : null 
+        }
       </div>
     );
   }
