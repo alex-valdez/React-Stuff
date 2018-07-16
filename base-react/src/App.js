@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -67,10 +66,10 @@ class App extends Component {
         border: '1px solid blue',
         padding: '8px',
         cursor: 'pointer',
-        ':hover': {
-          backgroundColor: 'lightgreen',
-          color: 'black'
-        },
+        // ':hover': {
+        //   backgroundColor: 'lightgreen',
+        //   color: 'black'
+        // },
       }
 
       let persons = null;
@@ -104,10 +103,10 @@ class App extends Component {
         );
 
         style.backgroundColor = 'red';
-        style[':hover'] = {
-          backgroundColor: 'salmon',
-          color: 'black'
-        };
+        // style[':hover'] = {
+        //   backgroundColor: 'salmon',
+        //   color: 'black'
+        // };
       }
 
       // let classes = ['red' ,'bold'].join(' '); // for classes in App.css. You can see it in the <p></p>
@@ -123,7 +122,7 @@ class App extends Component {
 
       // Has to be wrapped w/ style root to use Radium function in style Person to use 
       // things like '@media ...'
-      <StyleRoot> 
+      // <StyleRoot> 
         <div className="App">
           <h1>Hi, I'm a React App</h1>
           <p className={classes.join(' ')}>This is really working!</p>
@@ -136,9 +135,9 @@ class App extends Component {
           {/* this actually is wshat lets us toggle */}
           {persons}   
         </div>
-      </StyleRoot>
+      // </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
