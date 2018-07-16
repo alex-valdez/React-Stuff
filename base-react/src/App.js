@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -58,21 +58,8 @@ class App extends Component {
 
   render() {
 
-     
-      const style = {
-        color: 'white',
-        backgroundColor: 'green',
-        font: 'inherit',
-        border: '1px solid blue',
-        padding: '8px',
-        cursor: 'pointer',
-        // ':hover': {
-        //   backgroundColor: 'lightgreen',
-        //   color: 'black'
-        // },
-      }
-
       let persons = null;
+      let btnClass = '';
 
       if (this.state.showPersons) {
         persons = (
@@ -85,37 +72,20 @@ class App extends Component {
                 key={person.id}
                 changed={(event) => this.nameChangedHandler(event, person.id)} />
             })}
-            {/* <Person 
-              name={this.state.persons[0].name} 
-              age={this.state.persons[0].age}
-              />
-            <Person 
-              name={this.state.persons[1].name} 
-              age={this.state.persons[1].age}
-              click={this.switchNameHandler.bind(this,'Max!')}
-              changed={this.nameChangedHandler}
-              />
-            <Person 
-              name={this.state.persons[2].name} 
-              age={this.state.persons[2].age}
-              /> */}
+            
           </div>
         );
 
-        style.backgroundColor = 'red';
-        // style[':hover'] = {
-        //   backgroundColor: 'salmon',
-        //   color: 'black'
-        // };
+        btnClass = classes.Red; 
       }
 
       // let classes = ['red' ,'bold'].join(' '); // for classes in App.css. You can see it in the <p></p>
-      let classes = [];
+      let assignedClasses = [];
       if (this.state.persons.length <= 2) {
-        classes.push('red');
+        classes.push(classes.red);
       }
       if (this.state.persons.length <= 1) {
-        classes.push('bold');
+        classes.push(classes.bold);
       }
     
     return (
@@ -123,13 +93,13 @@ class App extends Component {
       // Has to be wrapped w/ style root to use Radium function in style Person to use 
       // things like '@media ...'
       // <StyleRoot> 
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, I'm a React App</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
+          <p className={assignedClasses.join(' ')}>This is really working!</p>
           
           <button 
           onClick={this.togglePersonsHandler}
-          style={style}
+          className={btnClass}
           >Toggle Persons</button>
 
           {/* this actually is wshat lets us toggle */}
